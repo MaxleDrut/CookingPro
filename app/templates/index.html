@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cooking Pro - Web</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div id="header">
+    <div id="title">
+        Cooking Pro - Web Application
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <div class="page-content">
+        <h1>Manage your kitchens and ingredients</h1>
+        <iframe src="/kitchens" width="900" height="500" style="border: 1px solid black"></iframe>
+        <h1>Access your personal recipes</h1>
+        <iframe src="/recipes" width="900" height="500" style="border: 1px solid black"></iframe>
+        <hr/>
+        <p>
+            Deliciously made by Maxence DRUTEL & Ronnie KACZYNSKI for Coursework 2 of COMP3211 - Distributed Systems
+        </p>
+        <p>
+            All rights reserved - University of Leeds - November 2021
+        </p>
+    </div>
+</div>
+
+{% endblock %}

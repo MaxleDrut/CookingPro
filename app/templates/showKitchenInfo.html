@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cooking Pro - Web</title>
+{% endblock %}
+
+{% block body %}
+
+<h1> {{ kitchen }} </h1> <button onclick="deleteKitchen('{{ kitchen }}')"> Delete Kitchen </button>
+<h2> Ingredients </h2>
+{% for i in ingredients %}
+<div>
+    {% if i[2] == "none" %}
+    <p> {{ i[0] }}, {{ i[1] }} <button onclick="deleteIngredient('{{ i[0] }}')"> Delete </button></p> 
+    Change stock <input type = "text" id = "{{ i[0] }}"> </input> <button onclick="changeStock('{{ i[0] }}')">Send</button>
+    {% else %}
+    <p> {{ i[0] }}, {{ i[1] }}{{ i[2] }} <button onclick="deleteIngredient('{{ i[0] }}')"> Delete </button></p> 
+    Change stock <input type = "text" id = "{{ i[0] }}"> </input> <button onclick="changeStock('{{ i[0] }}')">Send</button>
+    {% endif %}
+</div>
+{% endfor %}
+
+<h3> Add a New Ingredient</h3>
+<div>
+        <p>Name:<input type = "text" id = "name"></p>
+        <p>Count:<input type = "text" id = "count"></p>
+        <p>Unit:<input type = "text" id = "unit"></p>
+    <button onclick="addIngredient()">Submit</button>
+</div>
+
+<button onclick="location.href = '{{url_for('kitchens')}}';">Back</button>
+
+<script>
+
+function addIngredient()
+{
+    var name = document.getElementById("name").value;
+    var count = document.getElementById("count").value;
+    var unit = document.getElementById("unit").value;
+    if(unit == "")
+    {
+        unit = "none"
+    }
+    console.log(name, count, unit);
+    $.ajax({
+        url: ("{{ kitchen }}/" + name + "/" + count + "/" + unit),
+        type: "POST",
+        contentType: 'application/json; charset=utf-8',
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+        },
+        error: function () {
+        }
+    });
+}
+
+function deleteIngredient(id)
+{
+    $.ajax({
+        url: ("{{ kitchen }}/" + id),
+        type: "DELETE",
+        contentType: 'application/json; charset=utf-8',
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+        },
+        error: function () {
+        }
+    }); 
+}
+
+function changeStock(id)
+{
+    var count = document.getElementById(id).value;
+    $.ajax({
+        url: ("{{ kitchen }}/" + id + "/" + count),
+        type: "PUT",
+        contentType: 'application/json; charset=utf-8',
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+        },
+        error: function () {
+        }
+    });
+}
+
+function deleteKitchen(kitchen)
+{
+    $.ajax({
+        url: ("{{kitchen}}/" + "delete"),
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+        },
+        error: function () {
+        }
+    });
+}
+
+</script>
+
+{% endblock%}

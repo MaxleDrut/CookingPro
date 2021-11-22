@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/recipes.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <div class="title">
+        <h1>Availble recipes</h1>
+        <hr/>
+    </div>
+    <div class="left">
+        {% for recipe in recipes %}
+        <button class="recipeName" onclick="updateDisplayedRecipe({{recipe.recipeID}})">{{ recipe.recipeTitle }}</button>
+        <button class="delete" onclick= "location.href= '{{url_for('deleteRecipe',userID=userID,recipeID=recipe.recipeID)}}'">DEL</button>
+        {% endfor %}
+        <button style="padding-top:10px" onclick="addRecipeMode({{userID}})">Add a new recipe</button>
+    </div>
+
+    <div class="right">
+        <iframe id="recipeOnDisplay" src="" style="width:100%; height:100%; min-width:100%; max-width: 100%;">
+        </iframe>
+    </div>
+</div>
+
+<div style="width:100%; display: flex; justify-content: center">
+    <button onclick ="location.href = '{{url_for('recipesUsers')}}'" style="width:80%;">Return to all users</button>
+</div> 
+
+<script>
+
+function updateDisplayedRecipe(recipeID) {
+    let iFrame = document.getElementById("recipeOnDisplay");
+    iFrame.src = "/recipes/details/"+recipeID;
+}
+
+function addRecipeMode(userID) {
+    console.log("Hey");
+    let iFrame = document.getElementById("recipeOnDisplay");
+    iFrame.src = "/recipes/add/"+userID;
+}
+</script>
+
+{% endblock %}

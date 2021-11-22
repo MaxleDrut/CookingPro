@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>{{title}}</h1>
+<h2>Ingredients</h2>
+<ul>
+    {%for ingredient in ingredients %}
+    <li>
+        {{ingredient.ingredientName}} : {{ingredient.quantity}}{{ingredient.unit}}
+        (<a href="{{url_for('updateRecipeIngredient',recipeID=id,ingredientName=ingredient.ingredientName,quantity=ingredient.quantity,unit=ingredient.unit)}}'">Update</a>) (<a href="{{url_for('deleteRecipeIngredient',recipeID=id,ingredientName=ingredient.ingredientName)}}">Delete</a>)
+    </li>
+    {% endfor %}
+
+    <h4>Add an ingredient:</h4>
+    <form actions="{{url_for('showRecipeDetails',recipeID=id)}}" method="POST">
+        Ingredient name: <input type="text" name="ingredient" id="ingredient"><br/>
+        Quantity: <input type="number" name="quantity" id="quantity"><br/>
+        Unit: <input type="text" name="unit" id="unit"></br>
+        <input type="submit" value="Add ingredient">
+    </form>
+</ul>
+{{content}}
+
+<button onclick = "location.href = '{{url_for('checkSpoonacular',recipeID=id,recipeName=title)}}'" style="width:80%;text-align: center">Search for Nutrition and Price on Spoonacular</button>
+
+{% endblock %}

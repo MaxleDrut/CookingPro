@@ -1,0 +1,40 @@
+#header {
+    background-color:rgba(0,0,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+
+    height: 10vh;
+    width:100%;
+    top: 0;
+}
+
+#title {
+    color:white;
+    font-size: 42px;
+}
+
+.page-wrapper {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-content {
+    padding: 10px 40px 10px 40px;
+    background-color:#fafafa;
+    max-width:1200px;
+    min-height: 120vh;
+    width:100%;
+    
+}
+
+html,body {
+    margin:0px;
+    padding:0;
+}
+
+body {
+    background-color:wheat;
+}

@@ -1,0 +1,16 @@
+RecipeAPI, by Maxence DRUTEL (sc21mhmd)
+
+Webservice offering a collection of user's personal cooking recipes, with features integrable with KitchenAPI and SpoonocularAPI
+Requires access to the University of Leeds' School of Computng to run.
+
+It is very recommended to compile and run this program through an IDE (IntelliJ)
+Please compile the code with the given libraries of the directory lib
+
+To start the service, run the main class of RecipeAPIRESTStartUP:
+java out/production/com/recipeAPI/jaxrs/query/RecipeAPIRESTStartUp
+
+To run the unitary tests, offering a small example of the API's use, run the main class of RecipeUnitaryTestsClient:
+java out/production/com/recipeAPI/jaxrs/query/client/RecipeUnitaryTestClient
+
+To run a speed test, measuring the execution speed of the CRUD requests, run the main class of RecipeSpeedTestsClient:
+java out/production/com/recipeAPI/jaxrs/query/client/RecipeSpeedTestClient

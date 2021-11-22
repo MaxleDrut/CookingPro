@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div style="display:flex;align-content: center;flex-wrap: wrap;">
+    {% if status == "OK" %}
+    <h2>Query result for {{recipeName}}</h2>
+    <img src="{{recipeImage}}" width="800">
+
+    <div style="justify-self: left">
+        <h3>Nutritional values per serving</h3>
+        <ul>
+            <li>Calories: {{nutrition.calories}}</li>
+            <li>Carbs: {{nutrition.carbs}}</li>
+            <li>Fat: {{nutrition.fat}}</li>
+            <li>Proteins: {{nutrition.protein}}</li>
+        </ul>
+
+        <h3>Price informations</h3>
+        <ul>
+            <li>Total price of recipe: {{price.total}}$</li>
+            <li>Price per serving: {{price.perServing}}$</li>
+        </ul>
+    </div>
+
+    {% else %}
+    <h1>Sorry, we could not find the recipe with the name {{recipeName}}</h1>
+    {% endif %}
+    <button onclick="location.href = '{{url_for('showRecipeDetails',recipeID=recipeID)}}'" style="width:80%; text-align: center">Return to the recipe</button>
+</div>
+{% endblock %}

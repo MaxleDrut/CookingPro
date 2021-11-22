@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cooking Pro - Web</title>
+{% endblock %}
+{% block body %}
+
+<div id="buttonKitchen">
+    {% for kitchen in kitchens %}
+    <button onclick="location.href = '{{url_for('showIngredients',kitchen_name=kitchen)}}';">{{ kitchen }}</button>
+    {% endfor %}
+</div>
+
+<div>
+    <h1> Add a Kitchen</h1>
+    <p>Name:<input type = "text" id = "name"></p>
+    <button onclick="addKitchen()"> Submit </button>
+</div>
+
+<script>
+
+function addKitchen()
+{
+    var name = document.getElementById("name").value;
+    $.ajax({
+        url: ("add/" + name),
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+        },
+        error: function () {
+        }
+    });
+}
+
+</script>
+
+{% endblock%}

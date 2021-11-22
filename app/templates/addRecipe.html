@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<form action="/recipes/add/{{userID}}" method="POST" id="addForm">
+    Recipe name: <input name="recipeTitle" id="recipeTitle" type="text"><br/>
+    Recipe content (you can use HTML format): <textarea name="recipeContent" id="recipeContent" form="addForm" rows="8" cols="60"></textarea>
+    </br>
+    <input type="submit" value="Add recipe">
+</form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cooking Pro - Web</title>
+{% endblock %}
+{% block body %}
+
+<div id="buttonUsers">
+    {% for user in users %}
+    <button onclick ="location.href = '{{url_for('showUserRecipes',userID=user.userID)}}'">{{ user.name }}</button>
+    <button onclick ="location.href = '{{url_for('deleteUser',userID=user.userID)}}'">DEL</button>
+    <br/>
+    {% endfor %}
+</div>
+
+<hr/>
+
+<div id="newUser">
+    <h2>Add a new user:</h2><br/>
+    <form actions="/recipes" method="POST">
+        <input type="text" name="username" id="username">
+        <input type="submit" value="Add user">
+    </form>
+</div>
+
+{% endblock%}

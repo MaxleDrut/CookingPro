@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h3>Update the quantity of {{ingredientName}}: </h3>
+<form actions="{{url_for('updateRecipeIngredient',recipeID=recipeID,ingredientName=ingredientName,quantity=quantity,unit=unit)}}" method="POST">
+    <input type="number" name="quantity" id="quantity" value="{{quantity}}">{{unit}}
+    <br/>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}
